@@ -1,1 +1,201 @@
+:root {
+    --bg-color: #f9f9ff; /* Blanco con tinte muy suave */
+    --card-bg: #ffffff;
+    --card-border: #e6e6fa; /* Lila suave */
+    --primary-lila: #dcd0ff; /* Lila medio */
+    --accent-purple: #7b1fa2; /* Morado oscuro para detalles */
+    --text-color: #333;
+    --approved-bg: #9c27b0; /* Morado vibrante para aprobados */
+    --approved-text: #fff;
+    --locked-opacity: 0.7;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(135deg, var(--accent-purple), #4a148c);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 { margin: 0; font-size: 1.8rem; }
+header p { margin: 5px 0 15px 0; font-weight: 300; }
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.btn-reset {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: background 0.3s;
+}
+
+.btn-reset:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Contenedor Principal - Grid Horizontal */
+.main-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 20px;
+    min-height: calc(100vh - 150px);
+    align-items: flex-start;
+}
+
+/* Columna de Semestre */
+.semester-column {
+    min-width: 260px;
+    max-width: 260px;
+    background-color: rgba(230, 230, 250, 0.3);
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #ede7f6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.semester-title {
+    color: var(--accent-purple);
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-lila);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+/* Tarjeta de Ramo */
+.subject-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--primary-lila);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.subject-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Estado: Aprobado */
+.subject-card.approved {
+    background-color: var(--approved-bg);
+    color: var(--approved-text);
+    border-left-color: #4a148c;
+    text-decoration: line-through;
+    opacity: 0.9;
+}
+
+.subject-card.approved::after {
+    content: '✓';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Estado: Bloqueado (Visualmente sutil) */
+.subject-card.locked {
+    background-color: #f0f0f0;
+    color: #888;
+    border-left-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.modal.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-top: 5px solid var(--accent-purple);
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin: 15px 0;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.modal-content li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    color: #d32f2f;
+    font-size: 0.9rem;
+}
+
+.modal-content button {
+    background-color: var(--accent-purple);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+    .semester-column {
+        max-width: 100%;
+        width: 100%;
+    }
+}
 
