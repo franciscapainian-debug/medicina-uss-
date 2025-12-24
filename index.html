@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Curricular Medicina</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Malla Curricular Medicina</h1>
+        <p>Progreso Interactivo</p>
+        <div class="controls">
+            <span id="progress-text">Avance: 0%</span>
+            <button onclick="resetProgress()" class="btn-reset">Reiniciar Malla</button>
+        </div>
+    </header>
+
+    <div class="main-container" id="malla-container">
+        </div>
+
+    <div id="alert-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>¡Ramo Bloqueado!</h3>
+            <p>Para tomar este ramo necesitas aprobar:</p>
+            <ul id="missing-prereqs-list"></ul>
+            <button onclick="closeModal()">Entendido</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
